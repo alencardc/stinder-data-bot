@@ -5,9 +5,12 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "date-fns": "^2.15.0",
+    "faker": "^4.1.0",
     "puppeteer": "^5.2.1"
   },
   "devDependencies": {
+    "@types/faker": "^4.1.12",
     "@types/puppeteer": "^3.0.1",
     "ts-node-dev": "^1.0.0-pre.56",
     "typescript": "^3.9.7"

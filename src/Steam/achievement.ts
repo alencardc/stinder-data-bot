@@ -1,6 +1,7 @@
 import { Page } from 'puppeteer';
 
 export interface Achievement {
+  game?: number;
   name: string;
   description: string;
   thumbnailUrl: string;

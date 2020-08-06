@@ -3,6 +3,7 @@ import { Page } from 'puppeteer';
 import { Achievement, getAchievementsByUrl } from './achievement';
 
 export interface Game {
+  developer?: number;
   name: string;
   thumbnailUrl: string;
   tags: string[];
