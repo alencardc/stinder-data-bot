@@ -4,7 +4,7 @@ export interface Achievement {
   game?: number;
   name: string;
   description: string;
-  thumbnailUrl: string;
+  thumbnail: string;
 }
 
 export async function getAchievementsByUrl(url: string, page: Page): Promise<Achievement[]> {
@@ -14,7 +14,7 @@ export async function getAchievementsByUrl(url: string, page: Page): Promise<Ach
     return { 
       name: div.getElementsByTagName('h3')[0].innerText,
       description: div.getElementsByTagName('h5')[0].innerText,
-      thumbnailUrl: div.getElementsByTagName('img')[0].getAttribute('src') as string,
+      thumbnail: div.getElementsByTagName('img')[0].getAttribute('src') as string,
     }
   }));
 

@@ -1,11 +1,14 @@
 import { Page } from 'puppeteer';
+import faker from 'faker';
+import { formatISO9075 } from 'date-fns';
 
 import { Achievement, getAchievementsByUrl } from './achievement';
 
 export interface Game {
   developer?: number;
   name: string;
-  thumbnailUrl: string;
+  thumbnail: string;
+  releaseDate: string;
   tags: string[];
   achievements: Achievement[];
 }
@@ -27,7 +30,8 @@ export async function getGameByUrl(url: string, page: Page): Promise<Game | unde
   if (gameName && gameThumb && gameTags) {
     return {
       name: gameName,
-      thumbnailUrl: gameThumb,
+      thumbnail: gameThumb,
+      releaseDate: formatISO9075(faker.date.past(2, new Date())),
       tags: gameTags,
       achievements,
     };

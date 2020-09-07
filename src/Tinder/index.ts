@@ -1,4 +1,5 @@
 import faker from 'faker';
+import { geradorNomeFeminino, geradorNomeMasculino } from 'gerador-nome';
 import { format, formatISO9075 } from 'date-fns';
 
 import { makeRandomSequence } from '../utils';
@@ -16,7 +17,8 @@ export function getFakeUser(): User {
   faker.locale ='pt_BR';
 
   const date = faker.date.past(65, new Date('2001-03-09'));
-  const firstName = faker.name.firstName();
+  const gender = faker.random.boolean() ? 'f' : 'm';
+  const firstName = gender === 'm' ? geradorNomeMasculino() : geradorNomeFeminino();
   const lastName = faker.name.lastName();
 
   return { 
@@ -25,7 +27,7 @@ export function getFakeUser(): User {
     name: `${firstName} ${lastName}`,
     birthdate: format(date, 'yyyy-M-d'),
     description: faker.lorem.paragraph(3),
-    gender: faker.random.boolean() ? 'f' : 'm',
+    gender,
   }
 }
 
@@ -66,6 +68,23 @@ export function getFakeCreditCard(name?: string): CreditCard {
     number: makeRandomSequence(16),
     securityCode: makeRandomSequence(3),
     expiresAt: format(date, 'yyyy-M-d'),
+  }
+}
+
+export interface Photo {
+  userid: string | number;
+  url: string;
+  isValid: boolean;
+}
+
+export function getFakePhoto(userid: string | number, gender: 'f' | 'm', isValid?: boolean) {
+  const random = faker.random.number(99);
+  const genderName = gender === 'f' ? 'women' : 'men';
+
+  return {
+    userid,
+    url: `https://randomuser.me/api/portraits/${genderName}/${random}.jpg`,
+    isValid: !!isValid,
   }
 }
 

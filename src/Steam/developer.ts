@@ -4,7 +4,7 @@ import { Game, getGameByUrl } from './game';
 
 export interface Developer {
   name: string;
-  thumbnailUrl: string;
+  thumbnail: string;
   games: Game[];
 }
 
@@ -32,7 +32,7 @@ export async function getDeveloperByUrl(url: string, page: Page): Promise<Develo
 
   return {
     name: developerName,
-    thumbnailUrl: developerAvatar as string,
+    thumbnail: developerAvatar as string,
     games,
   }
 }

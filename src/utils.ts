@@ -27,7 +27,7 @@ export function createInsert<T extends Object>(table: string, data: T): string {
   for (let key in data) {
     if (typeof data[key] === 'string') {
       filteredNames.push(key.toString());
-      const value = String(data[key]).replace(/'/g, `\\'`);
+      const value = String(data[key]).replace(/'/g, `''`);
       filteredValues.push(`'${value}'`);
     } else if (typeof data[key] === 'number') {
       filteredNames.push(key.toString());
@@ -57,4 +57,28 @@ export function createManyInsertData<T extends Object>(tableName: string, data: 
   }
 
   return inserts;
+}
+
+
+export function getRandomNumbers(amount: number, min: number, max: number): number[] {
+  const numbers: number[] = [];
+  let realMax: number;
+  let realMin: number;
+  if (min > max) {
+    realMax = min;
+    realMin = max;
+  } else {
+    realMax = max;
+    realMin = min;
+  }
+
+  const size = amount > (realMax - realMin + 1) ? (realMax - realMin + 1) : amount;
+  while (numbers.length < size) {
+    const num = faker.random.number({ min: realMin, max: realMax });
+    
+    if (!numbers.includes(num)) {
+      numbers.push(num);
+    }
+  }
+  return numbers;
 }

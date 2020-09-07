@@ -4,9 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/app.ts"
+  },
   "dependencies": {
     "date-fns": "^2.15.0",
     "faker": "^4.1.0",
+    "gerador-nome": "^0.0.5",
     "puppeteer": "^5.2.1"
   },
   "devDependencies": {
